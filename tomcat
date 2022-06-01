@@ -2,7 +2,7 @@
 # description: Tomcat Start Stop Restart  
 # processname: tomcat  
 # chkconfig: 234 20 80
-CATALINA_HOME=/data/tomcat9
+CATALINA_HOME=/webserver/tomcat
 case $1 in  
 start)  
 sh $CATALINA_HOME/bin/startup.sh  
