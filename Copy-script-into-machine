@@ -1,0 +1,30 @@
+yum install java-1.8.0-openjdk-devel.x86_64 -y
+yum install git -y
+cd /
+mkdir /webserver
+cd /webserver
+wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.63/bin/apache-tomcat-9.0.63.zip
+unzip apache-tomcat-9.0.63.zip
+mv apache-tomcat-9.0.63 tomcat9
+cd /webserver/tomcat9/bin
+chmod 744 *
+cd /webserver/tomcat9/webapps
+wget https://tomcat.apache.org/tomcat-5.5-doc/appdev/sample/sample.war
+
+cd /mnt
+git clone https://github.com/satish7498/tomcat-auto-reboot-script.git
+cd /mnt/tomcat-auto-reboot-script
+cp tomcat9 /etc/rc.d/init.d
+cd /etc/rc.d/init.d
+chmod 755 tomcat9
+cd /
+sleep 2
+chkconfig --add tomcat9
+sleep 2
+chkconfig --level 234 tomcat9 on
+sleep 2
+service tomcat9 start
+sleep 2
+chkconfig tomcat9 on
+sleep 2
+service tomcat9 status
